@@ -1,158 +1,81 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Обратная связь — Я студент ВШЭ</title>
+  <title>Обратная связь</title>
   <style>
-    :root { --max: 980px; }
-    body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; line-height: 1.5; }
-    header, nav, main, footer { padding: 16px; }
+    body { margin: 0; font-family: system-ui, Arial, sans-serif; line-height: 1.5; }
+    header, main, footer { padding: 16px; }
     header { border-bottom: 1px solid #ddd; }
     footer { border-top: 1px solid #ddd; font-size: 14px; }
-    .wrap { max-width: var(--max); margin: 0 auto; }
-    nav ul { list-style: none; padding: 0; margin: 8px 0 0; display: flex; gap: 12px; flex-wrap: wrap; }
-    nav a { text-decoration: none; border-bottom: 1px dashed; }
+    .wrap { max-width: 800px; margin: 0 auto; }
+    nav ul { list-style: none; padding: 0; display: flex; gap: 12px; }
     form { border: 1px solid #eee; border-radius: 12px; padding: 16px; }
-    fieldset { border: 1px solid #eee; border-radius: 10px; padding: 12px; margin: 0 0 12px; }
-    legend { padding: 0 6px; }
-    label { display: block; margin: 10px 0 6px; font-weight: 600; }
-    input, select, textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 10px; font: inherit; }
-    textarea { min-height: 120px; resize: vertical; }
-    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    @media (max-width: 800px) { .row { grid-template-columns: 1fr; } }
-    .inline { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 6px; }
-    .inline label { display: inline-flex; align-items: center; gap: 8px; margin: 0; font-weight: 500; }
-    .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
-    button { padding: 10px 14px; border-radius: 10px; border: 1px solid #ddd; background: #fff; cursor: pointer; }
-    .muted { color: #555; }
+    label { display: block; margin-top: 12px; font-weight: 600; }
+    input, select, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font: inherit;
+    }
+    textarea { min-height: 120px; }
+    button { width: auto; margin-right: 8px; cursor: pointer; }
   </style>
 </head>
 
 <body>
-  <header>
-    <div class="wrap">
-      <h1>Обратная связь</h1>
-      <p class="muted">
-        Заполни форму — это демонстрация разных полей ввода HTML.
-      </p>
+<header>
+  <div class="wrap">
+    <h1>Обратная связь</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="feedback.html" aria-current="page">Обратная связь</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
-      <nav aria-label="Основная навигация">
-        <ul>
-          <li><a href="index.html">Главная</a></li>
-          <li><a href="feedback.html" aria-current="page">Обратная связь</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+<main>
+  <div class="wrap">
+    <form action="#" method="post">
+      <label for="name">Имя</label>
+      <input id="name" name="name" type="text" required>
 
-  <main>
-    <div class="wrap">
-      <section aria-labelledby="form-title">
-        <h2 id="form-title">Форма сообщения</h2>
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" required>
 
-        <!-- Статическая страница: обработчика нет, поэтому action="#" -->
-        <form action="#" method="post" autocomplete="on">
-          <fieldset>
-            <legend>Контактные данные</legend>
+      <label for="topic">Тема обращения</label>
+      <select id="topic" name="topic" required>
+        <option value="">Выберите тему</option>
+        <option value="study">Учёба</option>
+        <option value="work">Работа</option>
+        <option value="other">Другое</option>
+      </select>
 
-            <div class="row">
-              <div>
-                <label for="name">Имя</label>
-                <input id="name" name="name" type="text" placeholder="Например, Анна" required />
-              </div>
+      <label for="message">Сообщение</label>
+      <textarea id="message" name="message" required></textarea>
 
-              <div>
-                <label for="email">Email</label>
-                <input id="email" name="email" type="email" placeholder="name@example.com" required />
-              </div>
-            </div>
+      <label>
+        <input type="checkbox" name="agree" required>
+        Я согласен(на) на обработку персональных данных
+      </label>
 
-            <div class="row">
-              <div>
-                <label for="phone">Телефон (необязательно)</label>
-                <input id="phone" name="phone" type="tel" placeholder="+7 (999) 000-00-00" />
-              </div>
+      <div style="margin-top:12px;">
+        <button type="submit">Отправить</button>
+        <button type="reset">Очистить</button>
+      </div>
+    </form>
+  </div>
+</main>
 
-              <div>
-                <label for="date">Дата обращения</label>
-                <input id="date" name="date" type="date" />
-              </div>
-            </div>
-          </fieldset>
-
-          <fieldset>
-            <legend>Тема и параметры</legend>
-
-            <label for="topic">Тема обращения</label>
-            <select id="topic" name="topic" required>
-              <option value="" selected disabled>Выберите тему</option>
-              <option value="study">Учёба</option>
-              <option value="project">Проект</option>
-              <option value="other">Другое</option>
-            </select>
-
-            <label>Предпочтительный способ связи</label>
-            <div class="inline" role="group" aria-label="Предпочтительный способ связи">
-              <label><input type="radio" name="channel" value="email" required /> Email</label>
-              <label><input type="radio" name="channel" value="phone" /> Телефон</label>
-              <label><input type="radio" name="channel" value="telegram" /> Telegram</label>
-            </div>
-
-            <div class="row">
-              <div>
-                <label for="priority">Приоритет</label>
-                <input id="priority" name="priority" type="range" min="1" max="5" value="3" />
-                <p class="muted">1 — низкий, 5 — высокий</p>
-              </div>
-
-              <div>
-                <label for="time">Удобное время</label>
-                <input id="time" name="time" type="time" />
-              </div>
-            </div>
-
-            <label for="color">Любимый цвет (демо)</label>
-            <input id="color" name="color" type="color" value="#0000ff" />
-
-            <label for="file">Приложить файл (демо)</label>
-            <input id="file" name="file" type="file" accept=".pdf,.png,.jpg,.jpeg" />
-          </fieldset>
-
-          <fieldset>
-            <legend>Сообщение</legend>
-
-            <label for="message">Текст</label>
-            <textarea id="message" name="message" placeholder="Напишите сообщение..." required></textarea>
-
-            <div class="inline">
-              <label>
-                <input type="checkbox" name="agree" required />
-                Я согласен(на) с обработкой данных (демо-чекбокс)
-              </label>
-            </div>
-
-            <label for="password">Кодовое слово (демо password)</label>
-            <input id="password" name="password" type="password" placeholder="••••••••" />
-          </fieldset>
-
-          <div class="actions">
-            <button type="submit">Отправить</button>
-            <button type="reset">Очистить</button>
-          </div>
-
-          <p class="muted">
-            Примечание: страница статическая, поэтому отправка никуда не уходит — это нормально для задания.
-          </p>
-        </form>
-      </section>
-    </div>
-  </main>
-
-  <footer>
-    <div class="wrap">
-      <p>© <time datetime="2026-02-13">2026</time> Владимир • <a href="index.html">На главную</a></p>
-    </div>
-  </footer>
+<footer>
+  <div class="wrap">
+    <p>© 2026 Владимир · <a href="mailto:vyubykov_1@edu.hse.ru">vyubykov_1@edu.hse.ru</a></p>
+  </div>
+</footer>
 </body>
 </html>
