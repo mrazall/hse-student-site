@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Я — студент ВШЭ</title>
+  <meta name="description" content="Две статические HTML-страницы: главная и форма обратной связи. Тема: Я — студент ВШЭ." />
+  <style>
+    :root { --max: 980px; }
+    body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; line-height: 1.5; }
+    header, nav, main, footer { padding: 16px; }
+    header { border-bottom: 1px solid #ddd; }
+    footer { border-top: 1px solid #ddd; font-size: 14px; }
+    .wrap { max-width: var(--max); margin: 0 auto; }
+    nav ul { list-style: none; padding: 0; margin: 8px 0 0; display: flex; gap: 12px; flex-wrap: wrap; }
+    nav a { text-decoration: none; border-bottom: 1px dashed; }
+    .grid { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; align-items: start; }
+    @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
+    figure { margin: 0; padding: 12px; border: 1px solid #eee; border-radius: 10px; }
+    figcaption { font-size: 14px; color: #444; margin-top: 8px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { border: 1px solid #e5e5e5; padding: 8px; text-align: left; }
+    th { background: #fafafa; }
+    .tag { display: inline-block; padding: 2px 8px; border: 1px solid #ddd; border-radius: 999px; font-size: 12px; }
+    .muted { color: #555; }
+    code { background: #f3f3f3; padding: 2px 4px; border-radius: 4px; }
+  </style>
+</head>
+
+<body>
+  <a href="#content" class="wrap" style="display:block;padding:10px 16px;">Перейти к содержимому</a>
+
+  <header>
+    <div class="wrap">
+      <h1>Я — студент ВШЭ</h1>
+      <p class="muted">
+        Мини-сайт для домашнего задания по <strong>веб-программированию</strong>.
+        Здесь есть <em>семантическая разметка</em>, текст и графика.
+      </p>
+
+      <nav aria-label="Основная навигация">
+        <ul>
+          <li><a href="index.html" aria-current="page">Главная</a></li>
+          <li><a href="feedback.html">Обратная связь</a></li>
+          <li><a href="#about">Обо мне</a></li>
+          <li><a href="#study">Учёба</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="content">
+    <div class="wrap grid">
+      <section aria-labelledby="about">
+        <h2 id="about">Обо мне</h2>
+
+        <article>
+          <h3>Коротко</h3>
+          <p>
+            Меня зовут <strong>Владимир</strong>, я учусь в <abbr title="Национальный исследовательский университет">НИУ</abbr> ВШЭ
+            на направлении <span class="tag">Прикладная математика</span>.
+            Мне нравится совмещать <em>аналитику</em> и <em>разработку</em>.
+          </p>
+
+          <p>
+            В учебных проектах часто использую <code>SQL</code>, <code>Python</code> и основы фронтенда.
+            Иногда пишу заметки в формате <mark>структурированных конспектов</mark>.
+            Формула мотивации: учёба<sup>2</sup> + практика<sub>daily</sub>.
+          </p>
+
+          <blockquote cite="https://www.hse.ru/">
+            <p>
+              Моя цель — делать понятные и аккуратные решения: от вёрстки до анализа данных.
+            </p>
+          </blockquote>
+        </article>
+
+        <article id="study">
+          <h3>Что я изучаю</h3>
+          <ul>
+            <li>Веб-разработка: HTML, базовый CSS, семантика, формы</li>
+            <li>Аналитика: метрики, A/B, продуктовая логика</li>
+            <li>Инфраструктура: Linux, Docker, Hadoop/Spark (по задачам курса)</li>
+          </ul>
+
+          <details>
+            <summary>Планы на модуль</summary>
+            <ol>
+              <li>Сделать аккуратный статический сайт</li>
+              <li>Разобраться с GitHub Pages</li>
+              <li>Дальше — стилизация и доступность</li>
+            </ol>
+          </details>
+        </article>
+
+        <section aria-labelledby="schedule">
+          <h3 id="schedule">Моё примерное расписание</h3>
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">День</th>
+                <th scope="col">Фокус</th>
+                <th scope="col">Комментарий</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Пн–Ср</td>
+                <td>Учёба</td>
+                <td>лекции, практики, домашки</td>
+              </tr>
+              <tr>
+                <td>Чт</td>
+                <td>Проекты</td>
+                <td>код + документация</td>
+              </tr>
+              <tr>
+                <td>Пт–Вс</td>
+                <td>Повторение</td>
+                <td>конспекты, задачи, отдых</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="muted">
+            Если хочешь связаться — открой страницу <a href="feedback.html">«Обратная связь»</a>.<br />
+            (Да, тут я специально использовал <code>&lt;br&gt;</code> как строчный тег.)
+          </p>
+        </section>
+      </section>
+
+      <aside aria-label="Боковая информация">
+        <figure>
+          <img
+            src="assets/hse.svg"
+            alt="Простая эмблема ВШЭ (условная)"
+            width="100%"
+            height="auto"
+          />
+          <figcaption>
+            Пример графики на странице (локальный SVG в папке <code>assets</code>).
+          </figcaption>
+        </figure>
+
+        <section aria-labelledby="links">
+          <h2 id="links">Полезные ссылки</h2>
+          <ul>
+            <li><a href="https://www.hse.ru/" target="_blank" rel="noopener">Сайт ВШЭ</a></li>
+            <li><a href="https://github.com/" target="_blank" rel="noopener">GitHub</a></li>
+          </ul>
+        </section>
+
+        <section aria-labelledby="note">
+          <h2 id="note">Заметка</h2>
+          <p class="muted">
+            Этот сайт — <strong>статический</strong>: без JS и серверной части.
+          </p>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>
+        © <time datetime="2026-02-13">2026</time> Владимир • Домашнее задание 1 (HTML), ВШЭ
+      </p>
+      <address>
+        Контакт: <a href="mailto:student@example.com">student@example.com</a>
+      </address>
+    </div>
+  </footer>
+</body>
+</html>
