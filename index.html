@@ -5,115 +5,141 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Я — студент ВШЭ</title>
   <meta name="description" content="Личный сайт студента ВШЭ: учёба, интересы и контактная информация." />
+
+  <!-- Внешний CSS -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Внутренние стили (несколько определений) -->
   <style>
-    :root { --max: 980px; }
-    body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; line-height: 1.5; }
-    header, nav, main, footer { padding: 16px; }
-    header { border-bottom: 1px solid #ddd; }
-    footer { border-top: 1px solid #ddd; font-size: 14px; }
-    .wrap { max-width: var(--max); margin: 0 auto; }
-    nav ul { list-style: none; padding: 0; margin: 8px 0 0; display: flex; gap: 12px; flex-wrap: wrap; }
-    nav a { text-decoration: none; border-bottom: 1px dashed; }
-    .grid { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; }
-    @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
-    figure { margin: 0; padding: 12px; border: 1px solid #eee; border-radius: 10px; }
-    table { width: 100%; border-collapse: collapse; }
-    th, td { border: 1px solid #e5e5e5; padding: 8px; }
-    th { background: #fafafa; }
-    code { background: #f3f3f3; padding: 2px 4px; border-radius: 4px; }
-    .muted { color: #555; }
+    /* внутренний стиль: выделим цитату и один элемент по id */
+    blockquote { margin: 12px 0; padding: 10px 12px; border-left: 4px solid #111; background: #fff; border-radius: 12px; }
+    #about strong { letter-spacing: 0.2px; }
   </style>
 </head>
 
 <body>
-<header>
-  <div class="wrap">
-    <h1>Я — студент ВШЭ</h1>
-    <p class="muted">
-      Сайт-визитка в рамках курса «Веб-программирование».
-    </p>
+  <header class="site-header">
+    <div class="container">
+      <h1>Я — студент ВШЭ</h1>
+      <p class="muted" style="margin-top:0;">
+        Сайт-визитка по курсу «Веб-программирование». <span class="badge">HTML + CSS</span>
+      </p>
 
-    <nav aria-label="Основная навигация">
-      <ul>
-        <li><a href="index.html" aria-current="page">Главная</a></li>
-        <li><a href="feedback.html">Обратная связь</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+      <nav class="nav" aria-label="Основная навигация">
+        <a href="index.html" aria-current="page"><span>Главная</span></a>
+        <a href="feedback.html"><span>Обратная связь</span></a>
+        <a href="#about"><span>Обо мне</span></a>
+        <a href="#schedule"><span>Расписание</span></a>
+      </nav>
+    </div>
+  </header>
 
-<main>
-  <div class="wrap grid">
-    <section>
-      <h2>Обо мне</h2>
+  <main>
+    <div class="container grid">
+      <section class="main-col" id="about">
+        <div class="card">
+          <h2 class="section-title">Обо мне</h2>
+          <p>
+            Меня зовут <strong>Владимир</strong>. Я студент Национального исследовательского университета
+            <strong>«Высшая школа экономики»</strong>.
+          </p>
+          <p>
+            Мои ключевые направления — <em>аналитика</em> и <em>актуарная математика</em>.
+            Интересно работать на стыке моделей риска, статистики и прикладных бизнес-задач.
+          </p>
+          <blockquote>
+            <p style="margin:0;">
+              Стараюсь писать решения аккуратно: чтобы было понятно и человеку, и машине.
+            </p>
+          </blockquote>
+        </div>
 
-      <article>
-        <p>
-          Меня зовут <strong>Владимир</strong>. Я студент Национального исследовательского университета
-          <strong>«Высшая школа экономики»</strong>.
-        </p>
-        <p>
-          Основные академические интересы — <em>аналитика</em> и <em>актуарная математика</em>.
-          Мне важно сочетать строгие математические модели с практическими задачами.
-        </p>
-      </article>
+        <div class="card">
+          <h2 class="section-title">Что я изучаю</h2>
+          <ul class="clean">
+            <li>Аналитика данных и продуктовые метрики</li>
+            <li>Актуарная математика, страховые модели и риск-менеджмент</li>
+            <li>Статистика и прикладная математика</li>
+          </ul>
 
-      <article>
-        <h3>Что я изучаю</h3>
-        <ul>
-          <li>Аналитика данных и продуктовые метрики</li>
-          <li>Актуарная математика и страховые модели</li>
-          <li>Прикладная математика и статистика</li>
-        </ul>
-      </article>
+          <details style="margin-top:10px;">
+            <summary>Цели на этот модуль</summary>
+            <ol class="steps">
+              <li>Сделать семантический HTML и аккуратные стили</li>
+              <li>Использовать адаптивность через <span class="kbd">@media</span></li>
+              <li>Развернуть обновления на GitHub Pages</li>
+            </ol>
+          </details>
+        </div>
 
-      <section>
-        <h3>Расписание</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>День</th>
-              <th>Основная деятельность</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Понедельник, среда, четверг, пятница</td>
-              <td>Работа в страховой компании «Согласие»</td>
-            </tr>
-            <tr>
-              <td>Вторник</td>
-              <td>Посещение учебных занятий в ВШЭ</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="card" id="schedule">
+          <h2 class="section-title">Расписание</h2>
+
+          <p class="notice" style="margin-top:0;">
+            Основная занятость — работа в СК «Согласие». Во вторник — посещение пар.
+          </p>
+
+          <table class="table" aria-label="Расписание">
+            <thead>
+              <tr>
+                <th>День</th>
+                <th>Основная деятельность</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Понедельник</td>
+                <td>Работа в СК «Согласие»</td>
+              </tr>
+              <tr>
+                <td>Вторник</td>
+                <td>Учебные занятия в ВШЭ</td>
+              </tr>
+              <tr>
+                <td>Среда – Пятница</td>
+                <td>Работа в СК «Согласие»</td>
+              </tr>
+              <tr>
+                <td>Суббота – Воскресенье</td>
+                <td>Повторение, задачи, отдых</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p class="muted">
+            Для связи перейди на страницу <a href="feedback.html">обратной связи</a>.
+          </p>
+        </div>
       </section>
-    </section>
 
-    <aside>
-      <figure>
-        <img src="assets/hse.svg" alt="Символическое изображение ВШЭ" width="100%" />
-        <figcaption>Учёба в НИУ ВШЭ</figcaption>
-      </figure>
+      <aside class="side-col">
+        <figure class="figure">
+          <img src="assets/hse.svg" alt="Символическое изображение ВШЭ" />
+          <figcaption>Учёба в НИУ ВШЭ</figcaption>
+        </figure>
 
-      <section>
-        <h2>Ссылки</h2>
-        <ul>
-          <li><a href="https://www.hse.ru/" target="_blank" rel="noopener">Сайт ВШЭ</a></li>
-          <li><a href="feedback.html">Форма обратной связи</a></li>
-        </ul>
-      </section>
-    </aside>
-  </div>
-</main>
+        <div class="card" id="links">
+          <h2 class="section-title">Ссылки</h2>
+          <ul class="clean">
+            <li><a href="https://www.hse.ru/" target="_blank" rel="noopener">Сайт ВШЭ</a></li>
+            <li><a href="feedback.html">Форма обратной связи</a></li>
+          </ul>
+        </div>
 
-<footer>
-  <div class="wrap">
-    <p>© 2026 Владимир</p>
-    <address>
-      Контакт: <a href="mailto:vyubykov_1@edu.hse.ru">vyubykov_1@edu.hse.ru</a>
-    </address>
-  </div>
-</footer>
+        <div class="card">
+          <h2 class="section-title">Контакты</h2>
+          <p style="margin:0;">
+            Email: <a href="mailto:vyubykov_1@edu.hse.ru">vyubykov_1@edu.hse.ru</a>
+          </p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p style="margin:0;">© 2026 Владимир</p>
+    </div>
+  </footer>
 </body>
 </html>
