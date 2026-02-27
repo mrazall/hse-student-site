@@ -107,30 +107,30 @@ function pickReply(message) {
 }
 
 function initMap() {
-  // Координаты можно менять под нужные точки
-  const hse = [55.7566, 37.6256]; // центр Москвы как нейтральная точка
-  const map = L.map("map", { scrollWheelZoom: true }).setView(hse, 12);
+  const study = [55.8039, 37.3965];   // Таллинская, 34
+  const work  = [55.7826, 37.6316];   // Гиляровского, 42
+
+  const map = L.map("map", { scrollWheelZoom: true }).setView(study, 11);
 
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 19,
     attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
 
-  const marker1 = L.marker(hse, { draggable: true }).addTo(map);
-  marker1.bindPopup("ВШЭ (пример точки на карте)").openPopup();
+  const markerStudy = L.marker(study, { draggable: true }).addTo(map);
+  markerStudy.bindPopup("Учёба — Таллинская ул., 34").openPopup();
 
-  const office = [55.7402, 37.6189]; // ещё одна точка рядом
-  const marker2 = L.marker(office, { draggable: true }).addTo(map);
-  marker2.bindPopup("Работа / офис (пример точки)").closePopup();
+  const markerWork = L.marker(work, { draggable: true }).addTo(map);
+  markerWork.bindPopup("Работа — Гиляровского 42");
 
-  // Покажем координаты после перетаскивания
-  marker1.on("dragend", () => {
-    const p = marker1.getLatLng();
-    marker1.setPopupContent(`Точка: ${p.lat.toFixed(5)}, ${p.lng.toFixed(5)}`);
+  markerStudy.on("dragend", () => {
+    const p = markerStudy.getLatLng();
+    markerStudy.setPopupContent(`Учёба: ${p.lat.toFixed(5)}, ${p.lng.toFixed(5)}`);
   });
-  marker2.on("dragend", () => {
-    const p = marker2.getLatLng();
-    marker2.setPopupContent(`Точка: ${p.lat.toFixed(5)}, ${p.lng.toFixed(5)}`);
+
+  markerWork.on("dragend", () => {
+    const p = markerWork.getLatLng();
+    markerWork.setPopupContent(`Работа: ${p.lat.toFixed(5)}, ${p.lng.toFixed(5)}`);
   });
 }
 
