@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+  <link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+  crossorigin=""
+/>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Я — студент ВШЭ</title>
@@ -37,6 +43,50 @@
   <main>
     <div class="container grid">
       <section class="main-col" id="about">
+        <div class="card" id="map-card">
+  <h2 class="section-title">Где я учусь и работаю</h2>
+  <p class="muted">
+    Ниже — интерактивная карта. Маркеры можно перемещать и масштабировать карту.
+  </p>
+  <div id="map" role="application" aria-label="Интерактивная карта"></div>
+</div>
+
+<div class="card" id="chat-card">
+  <h2 class="section-title">Чат с автором</h2>
+
+  <div class="chat">
+    <div class="chat__top">
+      <div class="chat__status">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Владимир • онлайн</span>
+      </div>
+      <button class="btn secondary" id="chatClear" type="button" title="Очистить чат">
+        Очистить
+      </button>
+    </div>
+
+    <div id="chatMessages" class="chat__messages" aria-live="polite" aria-label="Сообщения"></div>
+
+    <div class="chat__controls">
+      <input
+        id="chatInput"
+        type="text"
+        placeholder="Напиши сообщение… (например: карта, ВШЭ, работа, актуарий)"
+        autocomplete="off"
+      />
+
+      <button class="btn" id="chatSend" type="button">Отправить</button>
+
+      <button class="btn secondary" id="voiceToggle" type="button" aria-pressed="false">
+        🎙 Запись
+      </button>
+    </div>
+
+    <p class="muted" style="margin:10px 0 0;">
+      Голосовые сообщения записываются и остаются только в браузере.
+    </p>
+  </div>
+</div>
         <div class="card">
           <h2 class="section-title">Обо мне</h2>
           <p>
@@ -141,5 +191,12 @@
       <p style="margin:0;">© 2026 Владимир</p>
     </div>
   </footer>
+  <script
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+  crossorigin=""
+></script>
+
+<script src="app.js"></script>
 </body>
 </html>
