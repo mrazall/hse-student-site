@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Сохранённые сообщения</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1>Сохранённые сообщения</h1>
+      <p class="muted" style="margin-top: 0;">
+        На этой странице отображаются данные, полученные через веб-форму и сохранённые в MongoDB.
+      </p>
+
+      <nav class="nav" aria-label="Основная навигация">
+        <a href="/">Главная</a>
+        <a href="/feedback">Обратная связь</a>
+        <a href="/messages" aria-current="page">Сообщения</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="card">
+        <h2 class="section-title">Полученные данные</h2>
+
+        <% if (messages.length === 0) { %>
+          <p>Пока нет ни одной записи.</p>
+        <% } else { %>
+          <% messages.forEach(function(item) { %>
+            <div class="card" style="margin-bottom: 12px;">
+              <p><strong>Имя:</strong> <%= item.name %></p>
+              <p><strong>Email:</strong> <%= item.email %></p>
+              <p><strong>Телефон:</strong> <%= item.phone || "—" %></p>
+              <p><strong>Дата:</strong> <%= item.date || "—" %></p>
+              <p><strong>Тема:</strong> <%= item.topic %></p>
+              <p><strong>Канал связи:</strong> <%= item.channel %></p>
+              <p><strong>Удобное время:</strong> <%= item.time || "—" %></p>
+              <p><strong>Сообщение:</strong> <%= item.message %></p>
+              <p><strong>Согласие:</strong> <%= item.agree ? "Да" : "Нет" %></p>
+              <p><strong>Дата создания:</strong> <%= new Date(item.createdAt).toLocaleString("ru-RU") %></p>
+            </div>
+          <% }); %>
+        <% } %>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p style="margin: 0;">© 2026 Владимир</p>
+    </div>
+  </footer>
+</body>
+</html>

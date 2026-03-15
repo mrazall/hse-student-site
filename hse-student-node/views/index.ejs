@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Я — студент ВШЭ</title>
+  <meta name="description" content="Персональная страница студента ВШЭ" />
+  <link rel="stylesheet" href="/style.css" />
+
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
+
+  <style>
+    blockquote {
+      margin: 12px 0;
+      padding: 10px 12px;
+      border-left: 4px solid #111;
+      background: #fff;
+      border-radius: 12px;
+    }
+
+    #about strong {
+      letter-spacing: 0.2px;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1>Я — студент ВШЭ</h1>
+      <p class="muted" style="margin-top: 0;">
+        Персональная страница, реализованная как локальное приложение Node.js.
+        <span class="badge">Node.js + MongoDB</span>
+      </p>
+
+      <nav class="nav" aria-label="Основная навигация">
+        <a href="/" aria-current="page">Главная</a>
+        <a href="/feedback">Обратная связь</a>
+        <a href="/messages">Сообщения</a>
+        <a href="#about">Обо мне</a>
+        <a href="#schedule">Расписание</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container grid">
+      <section class="main-col" id="about">
+        <div class="card">
+          <h2 class="section-title">Обо мне</h2>
+          <p>
+            Меня зовут <strong>Владимир</strong>. Я студент Национального исследовательского университета
+            <strong>«Высшая школа экономики»</strong>.
+          </p>
+          <p>
+            Основные направления моих интересов — <em>аналитика</em> и <em>актуарная математика</em>.
+            Мне интересны задачи, в которых теория вероятностей, статистика и анализ данных
+            применяются к реальным практическим ситуациям.
+          </p>
+
+          <blockquote>
+            <p style="margin: 0;">
+              Стараюсь делать решения аккуратными, понятными и практически полезными.
+            </p>
+          </blockquote>
+        </div>
+
+        <div class="card">
+          <h2 class="section-title">Что я изучаю</h2>
+          <ul class="clean">
+            <li>Аналитика данных и работа с прикладными метриками</li>
+            <li>Актуарная математика и оценка рисков</li>
+            <li>Статистика, теория вероятностей и прикладная математика</li>
+          </ul>
+
+          <details style="margin-top: 10px;">
+            <summary>Цели страницы</summary>
+            <ol class="steps">
+              <li>Показать структуру персонального сайта</li>
+              <li>Продемонстрировать интерактивную карту и чат</li>
+              <li>Обеспечить сбор и хранение данных из формы в MongoDB</li>
+            </ol>
+          </details>
+        </div>
+
+        <div class="card" id="schedule">
+          <h2 class="section-title">Расписание</h2>
+
+          <p class="notice" style="margin-top: 0;">
+            Основное направление деятельности — обучение. Также на странице представлены ключевые точки на карте.
+          </p>
+
+          <table class="table" aria-label="Расписание">
+            <thead>
+              <tr>
+                <th>День</th>
+                <th>Основная деятельность</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Понедельник</td>
+                <td>Самостоятельная работа и учебные задачи</td>
+              </tr>
+              <tr>
+                <td>Вторник</td>
+                <td>Посещение учебных занятий</td>
+              </tr>
+              <tr>
+                <td>Среда</td>
+                <td>Подготовка по аналитике и математическим дисциплинам</td>
+              </tr>
+              <tr>
+                <td>Четверг</td>
+                <td>Практические задачи и повторение</td>
+              </tr>
+              <tr>
+                <td>Пятница</td>
+                <td>Работа над учебными проектами</td>
+              </tr>
+              <tr>
+                <td>Суббота – Воскресенье</td>
+                <td>Повторение, закрепление материала, отдых</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card" id="map-card">
+          <h2 class="section-title">Интерактивная карта</h2>
+          <p class="muted">
+            На карте отображены ключевые точки: место учёбы и место работы.
+          </p>
+          <div id="map" role="application" aria-label="Интерактивная карта"></div>
+        </div>
+
+        <div class="card" id="chat-card">
+          <h2 class="section-title">Чат с автором</h2>
+
+          <div class="chat">
+            <div class="chat__top">
+              <div class="chat__status">
+                <span class="dot" aria-hidden="true"></span>
+                <span>Владимир • онлайн</span>
+              </div>
+
+              <button class="btn secondary" id="chatClear" type="button">
+                Очистить
+              </button>
+            </div>
+
+            <div id="chatMessages" class="chat__messages" aria-live="polite" aria-label="Сообщения"></div>
+
+            <div class="chat__controls">
+              <input
+                id="chatInput"
+                type="text"
+                placeholder="Напиши сообщение..."
+                autocomplete="off"
+              />
+              <button class="btn" id="chatSend" type="button">Отправить</button>
+              <button class="btn secondary" id="voiceToggle" type="button" aria-pressed="false">
+                🎙 Запись
+              </button>
+            </div>
+
+            <p class="muted" style="margin: 10px 0 0;">
+              Голосовые сообщения записываются только локально в браузере.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <aside class="side-col">
+        <figure class="figure">
+          <img src="/assets/hse.svg" alt="Символическое изображение ВШЭ" />
+          <figcaption>Персональная страница студента НИУ ВШЭ</figcaption>
+        </figure>
+
+        <div class="card">
+          <h2 class="section-title">Ссылки</h2>
+          <ul class="clean">
+            <li><a href="https://www.hse.ru/" target="_blank" rel="noopener">Сайт ВШЭ</a></li>
+            <li><a href="/feedback">Форма обратной связи</a></li>
+            <li><a href="/messages">Сохранённые сообщения</a></li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2 class="section-title">Контакты</h2>
+          <p style="margin: 0;">
+            Email: <a href="mailto:vyubykov_1@edu.hse.ru">vyubykov_1@edu.hse.ru</a>
+          </p>
+          <p>Учёба: Таллинская ул., 34</p>
+          <p>Работа: Гиляровского, 42</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p style="margin: 0;">© 2026 Владимир</p>
+    </div>
+  </footer>
+
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
+  <script src="/app.js"></script>
+</body>
+</html>
